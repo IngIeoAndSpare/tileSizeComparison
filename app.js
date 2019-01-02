@@ -3,7 +3,7 @@ var fs = require('fs'),
     readLine = require('readline'),
     axios = require('axios')
 
-// user input value
+// user input value 16x8 size request
 var coordinateX,
     coordinateY,
     zoomLevel,
@@ -20,7 +20,7 @@ const menuText = [
 
 // url context
 var vworldUrlContext = '',
-    naverUrlContext = '',
+    naverUrlContext = 'https://simg.pstatic.net/onetile/get/', //  197/0/1/11/1750/1223/bl_st_bg
     daumUrlContext = '',
     googleUrlContext = '';
 
