@@ -1,8 +1,9 @@
 // module
-var fs = require('fs'),
+var fileSaver = require('file-saver'),
     readLine = require('readline'),
     axios = require('axios'),
-    path = require('path');
+    path = require('path'),
+    config = require('./config.json');
 
 // user input value 16x8 size request
 var userInputData = []; // 0. vender 1. coordinateX, 2. coordinateY, 3. zoomLevel, 4. apiKey(option)
@@ -21,9 +22,9 @@ const subMenuText = [
 
 // url context
 var vworldUrlContext = '',
-    naverUrlContext = 'https://simg.pstatic.net/onetile/get/', //  197/0/1/11/1750/1223/bl_st_bg
-    daumUrlContext = 'http://map0.daumcdn.net/map_skyview/', //  L6/187/130.jpg?v=160114',
-    googleUrlContext = 'https://khms0.google.co.kr/kh/; //  v=821?x=3499&y=1602&z=12';
+    naverUrlContext = 'https://simg.pstatic.net/onetile/get', //  197/0/1/11/1750/1223/bl_st_bg
+    daumUrlContext = 'http://map0.daumcdn.net/map_skyview', //  L6/187/130.jpg?v=160114',
+    googleUrlContext = 'https://khms0.google.co.kr/kh; //  v=821?x=3499&y=1602&z=12';
 
 // set module interface
 var readLineInterface = readLine.createInterface(process.sdtin, process.stdout, null);
@@ -32,7 +33,7 @@ module.exports = {
     initAppHandler : function () {
         //TODO : app init
 	getUserInput();
-	 
+		 
     },
     doRequestMapTile : function (url, vender, coordinateSet, zoomLevel) {
 	var saveInfo = {
@@ -62,5 +63,25 @@ module.exports = {
 			userInputData.push(answer);
 		});
 	}
+    },
+    setUrl : function (urlSet) {
+	let urlArray = [vworldUrlContext, naverUrlContext, daumUrlContext, googleUrlContext];
+	let url;
+	switch(userInputData[0]) {
+		case 0 :
+			url = urlArray[0]
+			break;
+		case 1 :
+			url = urlArray[1] + '/197/0/1/' + 
+			break;
+		case 2 :
+			url = urlArray[2]
+			break;
+
+		case 3 :
+			url = urlArray[3]
+			break;
+	}
+	return url;
     },
 }
