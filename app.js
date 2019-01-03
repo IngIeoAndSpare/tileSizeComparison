@@ -1,12 +1,12 @@
 // module
-var fileSaver = require('file-saver'),
+var fs = require('fs'),
 	readLineSync = require('readline-sync'),
-    axios = require('axios'),
+	axios = require('axios'),
     path = require('path');
 
 // user input value 16x8 size request
-var userInputData = [], // 0. vender 1. coordinateX, 2. coordinateY, 3. zoomLevel, 4. apiKey(option)
-	requestUrl = []; // map tile request url array
+var userInputData = []; // 0. vender 1. coordinateX, 2. coordinateY, 3. zoomLevel, 4. apiKey(option)
+var saveFlag = false;
 
 // menu text 
 const menuText = [
@@ -14,8 +14,19 @@ const menuText = [
     'x 좌표를 입력해 주세요. => ',
     'y 좌표를 입력해 주세요. => ',
     'zoom level을 입력해 주세요. => ',
-    'API key를 입력해 주세요. (vworld 해당)=> '
+	'장소를 입력해 주세요.=> ',
+	'API Key를 입력해 주세요. => '
 ]
+const subMenu = [
+	'설악산 (x: y: z:), 독도(x: y: z:), 대전 정부청사(x: y: z:)',
+	'설악산 (x: y: z:), 독도(x: y: z:), 대전 정부청사(x: y: z:)',
+	'설악산 (x: y: z:), 독도(x: y: z:), 대전 정부청사(x: y: z:)',
+	'설악산 (x: y: z:), 독도(x: y: z:), 대전 정부청사(x: y: z:)'
+]
+const mapVender = [
+	'vworld', 'naver', 'daum', 'google'
+]
+
 
 // url context
 var vworldUrlContext = '',
@@ -26,32 +37,55 @@ var vworldUrlContext = '',
 module.exports = {
     initAppHandler : function () {
         const thisApp = this;
-		this.getUserInput();
+		this.getUserInput();  
 		let coordinateX = Number(userInputData[1]),
-			coordinateY = Number(userInputData[2]);
+			coordinateY = Number(userInputData[2]),
+			vender = mapVender[Number(userInputData[0]) - 1] + '_' + userInputData[4];
+		this.checkDirectory(vender);
 
 		for(let x = coordinateX; x < coordinateX + 16; x++) {
 			for(let y = coordinateY; y < coordinateY + 8; y++) {
-				requestUrl.push(thisApp.setUrl(x, y));
-				// thisApp.doRequestMapTile(thisApp.setUrl(x, y));
+				let tileInfo = {
+					vender,
+					coordinateSet : {
+						x, y
+					},
+					zoomLevel : Number(userInputData[3])
+				};
+				thisApp.doRequestMapTile(thisApp.setUrl(x, y), tileInfo);
 			}
 		}
-		let data = this.doRequestMapTile(requestUrl[0]);
     },
-    doRequestMapTile : function (url) {
-        axios.get(url).then(response => {
-			console.log('request ok');
-			return response.data;
+    doRequestMapTile : function (url,tileInfo) {
+		const thisApp = this;
+        axios.get(url, {
+			responseType : 'arraybuffer'
+		}).then(response => {
+			let imageResult = new Buffer(response.data, 'binary').toString('base64');
+			thisApp.saveTile(imageResult, tileInfo);
         }).catch(err => {
 			console.log(err);
 			return null;
         });
     },
     saveTile : function (data, tileInfo) {
-		//TODO : tile save
-		let maptileSavePath = path.resolve(__dirname, tileInfo.vender, tileInfo.coordinateSet.x +'_'+ tileInfo.coordinateSet.y + '_' + tileInfo.zoomLevel + '.jpg');
-		
-    },
+		let imageName = tileInfo.coordinateSet.x + '_' + tileInfo.coordinateSet.y + '_' + tileInfo.zoomLevel + '.jpg',
+			folderPath = './' + tileInfo.vender;
+
+		fs.writeFile(folderPath + '/' + imageName , data, {encoding : 'base64'}, function (err) {
+			if(!err) {
+				console.log(imageName + ' fileCreate');
+			} else {
+				console.log(err);
+			}
+		});
+	},
+	checkDirectory : function (vender) {
+		let mapTileSavePath = './' + vender;
+		if(!fs.existsSync(mapTileSavePath)) {
+			fs.mkdirSync(mapTileSavePath);
+		}
+	},
     getUserInput : function () {
 		for(let consoleLine of menuText) {
 			userInputData.push(readLineSync.question(consoleLine));
@@ -65,13 +99,13 @@ module.exports = {
 				url = urlArray[0]
 				break;
 			case 2 :
-				url = urlArray[1] + '/197/0/1/' + Number(userInputData[3]) + '/' + x + '/' + y + '/bl_st_bg';
+				url = urlArray[1] + '/197/0/1/' + Number(userInputData[3]) + '/' + x + '/' + y + '/bl_st_bg';;
 				break;
 			case 3 :
-				url = urlArray[2]
+				url = urlArray[2] + '/L' + Number(userInputData[3]) + '/' + y + '/' + x + '.jpg?v=160114';
 				break;
 			case 4 :
-				url = urlArray[3]
+				url = urlArray[3] + '/v=821?x=' + x + '&y=' + y + '&z=' + Number(userInputData[3]);
 				break;
 		}
 		return url;
