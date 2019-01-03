@@ -32,6 +32,13 @@ var vworldUrlContext = 'http://xdworld.vworld.kr:8080/XDServer/3DData?Version=2.
 	googleUrlContext = 'https://khms0.google.co.kr/kh',  //v=821?x=3499&y=1602&z=12',
 	vwolrdUrlContext2018 = 'http://xdworld.vworld.kr:8080/XDServer/requestLayerNode?Layer=2018'; //Level=12&IDX=34939&IDY=14471&APIKey=...';
 
+// fileSize value
+var maxSize = 0,
+	minSize = 1000,
+	totalSize = 0,
+	createFileLength = 0,
+	totalFileLength = 128;
+
 module.exports = {
     initAppHandler : function () {
         const thisApp = this;
@@ -96,13 +103,28 @@ module.exports = {
 		}
 	},
 	addFileSize : function (path) {
+
 		checkSize(path, (err, size) => {
+			createFileLength++;
 			if(err) {
 				console.log(path + 'file read size err. check file');
 				console.log(err);
 			} else {
-				let fileSize = (size/2014).toFixed(2);
+				let fileSize = (size/1024).toFixed(2);
+				if(fileSize > maxSize) {
+					maxSize = fileSize;
+				} else if (fileSize < minSize) {
+					minSize = fileSize;
+				}
+				totalSize += Number(fileSize);
 				console.log(fileSize + 'KB');
+			}
+			if(totalFileLength == createFileLength) {
+				totalSize = totalSize.toFixed(2);
+				console.log('max File size => ' + maxSize + 'KB');
+				console.log('min File size => ' + minSize + 'KB');
+				console.log('total Tile size => ' + (totalSize / 1024).toFixed(2) + 'MB');
+				console.log('average tile Size => ' + (totalSize / totalFileLength).toFixed(2) + 'KB')
 			}
 		});
 	},
