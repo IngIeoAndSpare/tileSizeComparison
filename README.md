@@ -1,9 +1,9 @@
 tileSizeComparison
 
-- ready
+ready
 
-npm install
+- npm install
 
-- start 
+start
 
-node -e 'require("./app.js").initAppHandler()'
+- node -e 'require("./app.js").initAppHandler()'
