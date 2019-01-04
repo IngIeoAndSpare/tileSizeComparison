@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "c65ba43c-98c6-4ee5-929f-c2b1384f4cec",
+		"name": "울릉도",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[울릉,독도] 구글",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://khms0.google.co.kr/kh/v=821?x=442&y=198&z=9",
+					"protocol": "https",
+					"host": [
+						"khms0",
+						"google",
+						"co",
+						"kr"
+					],
+					"path": [
+						"kh",
+						"v=821"
+					],
+					"query": [
+						{
+							"key": "x",
+							"value": "442"
+						},
+						{
+							"key": "y",
+							"value": "198"
+						},
+						{
+							"key": "z",
+							"value": "9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[울릉,독도] 다음",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://map1.daumcdn.net/map_skyview/L10/15/17.jpg?v=160114",
+					"protocol": "http",
+					"host": [
+						"map1",
+						"daumcdn",
+						"net"
+					],
+					"path": [
+						"map_skyview",
+						"L10",
+						"15",
+						"17.jpg"
+					],
+					"query": [
+						{
+							"key": "v",
+							"value": "160114"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[울릉,독도] 네이버",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://simg.pstatic.net/onetile/get/197/0/1/5/36/23/bl_st_bg",
+					"protocol": "https",
+					"host": [
+						"simg",
+						"pstatic",
+						"net"
+					],
+					"path": [
+						"onetile",
+						"get",
+						"197",
+						"0",
+						"1",
+						"5",
+						"36",
+						"23",
+						"bl_st_bg"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[울릉, 독도] 브이월드 ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://xdworld.vworld.kr:8080/XDServer/3DData?Version=2.0.0.0&Request=GetLayer&Layer=tile_mo_HD&Level=6&IDX=551&IDY=227&Key={{KEY}}",
+					"protocol": "http",
+					"host": [
+						"xdworld",
+						"vworld",
+						"kr"
+					],
+					"port": "8080",
+					"path": [
+						"XDServer",
+						"3DData"
+					],
+					"query": [
+						{
+							"key": "Version",
+							"value": "2.0.0.0"
+						},
+						{
+							"key": "Request",
+							"value": "GetLayer"
+						},
+						{
+							"key": "Layer",
+							"value": "tile_mo_HD"
+						},
+						{
+							"key": "Level",
+							"value": "6"
+						},
+						{
+							"key": "IDX",
+							"value": "551"
+						},
+						{
+							"key": "IDY",
+							"value": "227"
+						},
+						{
+							"key": "Key",
+							"value": "{{KEY}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[울릉, 독도] 브이월드2018 (없음)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://xdworld.vworld.kr:8080/XDServer/requestLayerNode?Layer=2018&Level=6&IDX=551&IDY=227&APIKey={{KEY}}",
+					"protocol": "http",
+					"host": [
+						"xdworld",
+						"vworld",
+						"kr"
+					],
+					"port": "8080",
+					"path": [
+						"XDServer",
+						"requestLayerNode"
+					],
+					"query": [
+						{
+							"key": "Layer",
+							"value": "2018"
+						},
+						{
+							"key": "Level",
+							"value": "6"
+						},
+						{
+							"key": "IDX",
+							"value": "551"
+						},
+						{
+							"key": "IDY",
+							"value": "227"
+						},
+						{
+							"key": "APIKey",
+							"value": "{{KEY}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

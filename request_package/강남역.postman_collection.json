@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "f9c6aa9b-d2f9-472a-bf35-518b64af982b",
+		"name": "강남역",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[강남역] 브이월드",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://xdworld.vworld.kr:8080/XDServer/3DData?Version=2.0.0.0&Request=GetLayer&Layer=tile_mo_HD&Level=12&IDX=34932&IDY=14506&Key={{Key}}",
+					"protocol": "http",
+					"host": [
+						"xdworld",
+						"vworld",
+						"kr"
+					],
+					"port": "8080",
+					"path": [
+						"XDServer",
+						"3DData"
+					],
+					"query": [
+						{
+							"key": "Version",
+							"value": "2.0.0.0"
+						},
+						{
+							"key": "Request",
+							"value": "GetLayer"
+						},
+						{
+							"key": "Layer",
+							"value": "tile_mo_HD"
+						},
+						{
+							"key": "Level",
+							"value": "12"
+						},
+						{
+							"key": "IDX",
+							"value": "34932"
+						},
+						{
+							"key": "IDY",
+							"value": "14506"
+						},
+						{
+							"key": "Key",
+							"value": "{{KEY}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[강남역] 브이월드 2018",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://xdworld.vworld.kr:8080/XDServer/requestLayerNode?Layer=2018&Level=12&IDX=34932&IDY=14506&APIKey={{KEY}}",
+					"protocol": "http",
+					"host": [
+						"xdworld",
+						"vworld",
+						"kr"
+					],
+					"port": "8080",
+					"path": [
+						"XDServer",
+						"requestLayerNode"
+					],
+					"query": [
+						{
+							"key": "Layer",
+							"value": "2018"
+						},
+						{
+							"key": "Level",
+							"value": "12"
+						},
+						{
+							"key": "IDX",
+							"value": "34932"
+						},
+						{
+							"key": "IDY",
+							"value": "14506"
+						},
+						{
+							"key": "APIKey",
+							"value": "{{KEY}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[강남역] 네이버",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://simg.pstatic.net/onetile/get/197/0/1/12/3389/2935/bl_st_bg",
+					"protocol": "https",
+					"host": [
+						"simg",
+						"pstatic",
+						"net"
+					],
+					"path": [
+						"onetile",
+						"get",
+						"197",
+						"0",
+						"1",
+						"12",
+						"3389",
+						"2935",
+						"bl_st_bg"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[강남역] 다음",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://map2.daumcdn.net/map_skyview/L3/1970/906.jpg?v=160114",
+					"protocol": "http",
+					"host": [
+						"map2",
+						"daumcdn",
+						"net"
+					],
+					"path": [
+						"map_skyview",
+						"L3",
+						"1970",
+						"906.jpg"
+					],
+					"query": [
+						{
+							"key": "v",
+							"value": "160114"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[강남역] 구글",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://khms0.google.co.kr/kh/v=821?x=111783&y=50788&z=17",
+					"protocol": "https",
+					"host": [
+						"khms0",
+						"google",
+						"co",
+						"kr"
+					],
+					"path": [
+						"kh",
+						"v=821"
+					],
+					"query": [
+						{
+							"key": "x",
+							"value": "111783"
+						},
+						{
+							"key": "y",
+							"value": "50788"
+						},
+						{
+							"key": "z",
+							"value": "17"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

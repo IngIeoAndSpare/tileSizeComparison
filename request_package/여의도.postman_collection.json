@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "21f172cc-2208-4060-a4e8-b0cd67da3cac",
+		"name": "여의도",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[여의도] 다음",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://map2.daumcdn.net/map_skyview/L6/247/110.jpg?v=160114",
+					"protocol": "http",
+					"host": [
+						"map2",
+						"daumcdn",
+						"net"
+					],
+					"path": [
+						"map_skyview",
+						"L6",
+						"247",
+						"110.jpg"
+					],
+					"query": [
+						{
+							"key": "v",
+							"value": "160114"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[여의도] 브이월드 2018",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://xdworld.vworld.kr:8080/XDServer/requestLayerNode?Layer=2018&Level=11&IDX=17462&IDY=7254&APIKey={{KEY}}",
+					"protocol": "http",
+					"host": [
+						"xdworld",
+						"vworld",
+						"kr"
+					],
+					"port": "8080",
+					"path": [
+						"XDServer",
+						"requestLayerNode"
+					],
+					"query": [
+						{
+							"key": "Layer",
+							"value": "2018"
+						},
+						{
+							"key": "Level",
+							"value": "11"
+						},
+						{
+							"key": "IDX",
+							"value": "17462"
+						},
+						{
+							"key": "IDY",
+							"value": "7254"
+						},
+						{
+							"key": "APIKey",
+							"value": "{{KEY}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[여의도] 브이월드",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://xdworld.vworld.kr:8080/XDServer/3DData?Version=2.0.0.0&Request=GetLayer&Layer=tile_mo_HD&Level=11&IDX=17462&IDY=7254&Key={{KEY}}",
+					"protocol": "http",
+					"host": [
+						"xdworld",
+						"vworld",
+						"kr"
+					],
+					"port": "8080",
+					"path": [
+						"XDServer",
+						"3DData"
+					],
+					"query": [
+						{
+							"key": "Version",
+							"value": "2.0.0.0"
+						},
+						{
+							"key": "Request",
+							"value": "GetLayer"
+						},
+						{
+							"key": "Layer",
+							"value": "tile_mo_HD"
+						},
+						{
+							"key": "Level",
+							"value": "11"
+						},
+						{
+							"key": "IDX",
+							"value": "17462"
+						},
+						{
+							"key": "IDY",
+							"value": "7254"
+						},
+						{
+							"key": "Key",
+							"value": "{{KEY}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[여의도] 구글",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://khms0.google.co.kr/kh/v=821?x=13969&y=6347&z=14",
+					"protocol": "https",
+					"host": [
+						"khms0",
+						"google",
+						"co",
+						"kr"
+					],
+					"path": [
+						"kh",
+						"v=821"
+					],
+					"query": [
+						{
+							"key": "x",
+							"value": "13969"
+						},
+						{
+							"key": "y",
+							"value": "6347"
+						},
+						{
+							"key": "z",
+							"value": "14"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[여의도] 네이버",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://simg.pstatic.net/onetile/get/197/0/1/9/420/368/bl_st_bg",
+					"protocol": "https",
+					"host": [
+						"simg",
+						"pstatic",
+						"net"
+					],
+					"path": [
+						"onetile",
+						"get",
+						"197",
+						"0",
+						"1",
+						"9",
+						"420",
+						"368",
+						"bl_st_bg"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
