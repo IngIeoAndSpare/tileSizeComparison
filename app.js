@@ -50,9 +50,12 @@ module.exports = {
 		// check dir and mkdir
 		this.checkDirectory(vender);
 
+		//다운 받을 지도 타일에 따라 x, y축 속성이 다르다.
+		let venderFlag = (userInputData[0] != 4 ? true : false);
 		// request image tile loop 16x8 size
 		for(let x = coordinateX; x < coordinateX + 16; x++) {
-			for(let y = coordinateY; y < coordinateY + 8; y++) {
+			// google map 만 위도 계산이 다르기에 google map 인 경우 y-- 로 실시한다.
+			for(let y = coordinateY; (venderFlag ? y < coordinateY + 8 : y > coordinateY - 8); (venderFlag ? y++ : y--)){
 				// file metadata setting
 				let tileInfo = {
 					vender,
@@ -77,6 +80,7 @@ module.exports = {
         }).catch(err => {
 			console.log('get tile data err =>  x: ' + tileInfo.coordinateSet.x + '  y: ' + tileInfo.coordinateSet.y + '  zoom: ' + tileInfo.zoomLevel);
 			console.log(err);
+			createFileLength++;
         });
     },
     saveTile : function (data, tileInfo) {
@@ -89,7 +93,7 @@ module.exports = {
 			if(!err) {
 				console.log(imageName + ' fileCreate');
 				// add file size
-				thisApp.addFileSize(folderPath + '/' + imageName);
+				thisApp.addFileSize(folderPath, imageName);
 			} else {
 				console.log(err);
 			}
@@ -102,10 +106,11 @@ module.exports = {
 			fs.mkdirSync(mapTileSavePath);
 		}
 	},
-	addFileSize : function (path) {
-
+	addFileSize : function (folderPath, imageName) {
+		let path = folderPath + '/' + imageName;
 		checkSize(path, (err, size) => {
 			createFileLength++;
+			console.log('check => ' + createFileLength);
 			if(err) {
 				console.log(path + 'file read size err. check file');
 				console.log(err);
@@ -121,10 +126,29 @@ module.exports = {
 			}
 			if(totalFileLength == createFileLength) {
 				totalSize = totalSize.toFixed(2);
+				let averageSize = (totalSize / totalFileLength).toFixed(2),
+					convertTotalSize = (totalSize / 1024).toFixed(2);
+				console.log('===================== result ==================');
 				console.log('max File size => ' + maxSize + 'KB');
 				console.log('min File size => ' + minSize + 'KB');
-				console.log('total Tile size => ' + (totalSize / 1024).toFixed(2) + 'MB');
-				console.log('average tile Size => ' + (totalSize / totalFileLength).toFixed(2) + 'KB')
+				console.log('total Tile size => ' + convertTotalSize + 'MB');
+				console.log('average tile Size => ' + averageSize + 'KB');
+
+				// create result txt file
+				let result = 'max File size => ' + maxSize + 'KB \n' +
+				'min File size => ' + minSize + 'KB \n' +
+				'total Tile size => ' + convertTotalSize + 'MB \n'+
+				'average tile Size => ' + averageSize + 'KB';				
+
+				let buffer = new Buffer(result);
+				fs.writeFile(folderPath + '/' + 'result.txt', buffer, (err) =>{
+					if(err) {
+						console.log('result txt create err. check err.');
+						console.log(err);
+					} else {
+						console.log('create result text file');
+					}
+				});
 			}
 		});
 	},
