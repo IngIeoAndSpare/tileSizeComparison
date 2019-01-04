@@ -1,0 +1,29 @@
+{
+  "name": "tile_comparesion",
+  "version": "0.0.1",
+  "description": "각 지도별 타일 비교",
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "fs": "^0.0.1-security",
+    "get-folder-size": "^2.0.0",
+    "readline-sync": "^1.4.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IngIeoAndSpare/tileSizeComparison.git"
+  },
+  "keywords": [
+    "map"
+  ],
+  "author": "IngIeoAndSpare",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IngIeoAndSpare/tileSizeComparison/issues"
+  },
+  "homepage": "https://github.com/IngIeoAndSpare/tileSizeComparison#readme"
+}
