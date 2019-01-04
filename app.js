@@ -51,7 +51,7 @@ module.exports = {
 		this.checkDirectory(vender);
 
 		//다운 받을 지도 타일에 따라 x, y축 속성이 다르다.
-		let venderFlag = (userInputData[0] != 4 ? true : false);
+		let venderFlag = (Number(userInputData[0]) != 4 ? true : false);
 		// request image tile loop 16x8 size
 		for(let x = coordinateX; x < coordinateX + 16; x++) {
 			// google map 만 위도 계산이 다르기에 google map 인 경우 y-- 로 실시한다.
