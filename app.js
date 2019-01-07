@@ -18,12 +18,6 @@ const menuText = [
 	'요청할 가로축 타일 갯수를 입력해 주세요. => ',
 	'요청할 세로축 타일 갯수를 입력해 주세요. => '
 ]
-const subMenu = [
-	'설악산 (x: y: z:), 독도(x: y: z:), 대전 정부청사(x: y: z:)',
-	'설악산 (x: y: z:), 독도(x: y: z:), 대전 정부청사(x: y: z:)',
-	'설악산 (x: y: z:), 독도(x: y: z:), 대전 정부청사(x: y: z:)',
-	'설악산 (x: y: z:), 독도(x: y: z:), 대전 정부청사(x: y: z:)'
-]
 const mapVender = [
 	'vworld', 'naver', 'daum', 'google', 'vworld2018'
 ]
@@ -98,15 +92,18 @@ module.exports = {
 		const thisApp = this;
 		let imageName = tileInfo.coordinateSet.x + '_' + tileInfo.coordinateSet.y + '_' + tileInfo.zoomLevel + '.jpg',
 			folderPath = './' + tileInfo.vender;
-
 		//create tile image file
 		fs.writeFile(folderPath + '/' + imageName , data, {encoding : 'base64'}, function (err) {
 			if(!err) {
+				createFileLength++;
 				console.log(imageName + ' fileCreate');
+				console.log('remain file count => ' + (totalFileLength - createFileLength));
 				// add file size
 				thisApp.getFileSize(folderPath, imageName);
 			} else {
+				createFileLength++;
 				console.log(err);
+				requestFailList += 'create file fail => ' + imageName;
 			}
 		});
 	},
@@ -121,7 +118,6 @@ module.exports = {
 		let path = folderPath + '/' + imageName;
 		const thisApp = this;
 		checkSize(path, (err, size) => {
-			createFileLength++;
 			let checkImageFlag = true;
 			console.log('check => ' + createFileLength);
 			if(err) {
@@ -167,6 +163,9 @@ module.exports = {
 			}
 		});
 	},
+	closeFs: function () {
+		fs.close();
+	},
 	createTextFile : function (filePath, text, name) {
 		let buffer = new Buffer(text);
 		fs.writeFile(filePath + '/' + name, buffer, (err) => {
@@ -177,6 +176,7 @@ module.exports = {
 				console.log('create '+ name +' text file');
 			}
 		});
+		this.closeFs();
 	},
     getUserInput : function () {
 		for(let consoleLine of menuText) {
