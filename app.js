@@ -14,7 +14,9 @@ const menuText = [
     'y 좌표를 입력해 주세요. => ',
     'zoom level을 입력해 주세요. => ',
 	'장소를 입력해 주세요.=> ',
-	'API Key를 입력해 주세요. => '
+	'API Key를 입력해 주세요. => ',
+	'요청할 가로축 타일 갯수를 입력해 주세요. => ',
+	'요청할 세로축 타일 갯수를 입력해 주세요. => '
 ]
 const subMenu = [
 	'설악산 (x: y: z:), 독도(x: y: z:), 대전 정부청사(x: y: z:)',
@@ -37,7 +39,10 @@ var maxSize = 0,
 	minSize = 1000,
 	totalSize = 0,
 	createFileLength = 0,
-	totalFileLength = 128;
+	totalFileLength = 0;
+
+// get file errer text 
+var requestFailList = '';
 
 module.exports = {
     initAppHandler : function () {
@@ -46,16 +51,20 @@ module.exports = {
 		// setting coordinate 
 		let coordinateX = Number(userInputData[1]),
 			coordinateY = Number(userInputData[2]),
+			getNumberX = Number(userInputData[6]),
+			getNumberY = Number(userInputData[7])
 			vender = mapVender[Number(userInputData[0]) - 1] + '_' + userInputData[4];
 		// check dir and mkdir
 		this.checkDirectory(vender);
+		// set request tile Count
+		totalFileLength = getNumberX * getNumberY;
 
 		//다운 받을 지도 타일에 따라 x, y축 속성이 다르다.
-		let venderFlag = (Number(userInputData[0]) != 4 ? true : false);
-		// request image tile loop 16x8 size
-		for(let x = coordinateX; x < coordinateX + 16; x++) {
-			// google map 만 위도 계산이 다르기에 google map 인 경우 y-- 로 실시한다.
-			for(let y = coordinateY; (venderFlag ? y < coordinateY + 8 : y > coordinateY - 8); (venderFlag ? y++ : y--)){
+		let venderFlag = (userInputData[0] == 4 ? true : false);
+		// request image tile loop getNumberX x getNumberY size
+		for(let x = coordinateX; x < coordinateX + getNumberX; x++) {
+			// google map 만 위도 계산이 다르기에 google map 인 경우 y++ 로 실시한다.
+			for(let y = coordinateY; (venderFlag ? y < coordinateY + getNumberY : y > coordinateY - getNumberY); (venderFlag ? y++ : y--)){
 				// file metadata setting
 				let tileInfo = {
 					vender,
@@ -78,6 +87,8 @@ module.exports = {
 			let imageResult = new Buffer(response.data, 'binary').toString('base64');
 			thisApp.saveTile(imageResult, tileInfo);
         }).catch(err => {
+			requestFailList += 'fail d' 
+
 			console.log('get tile data err =>  x: ' + tileInfo.coordinateSet.x + '  y: ' + tileInfo.coordinateSet.y + '  zoom: ' + tileInfo.zoomLevel);
 			console.log(err);
 			createFileLength++;
@@ -93,7 +104,7 @@ module.exports = {
 			if(!err) {
 				console.log(imageName + ' fileCreate');
 				// add file size
-				thisApp.addFileSize(folderPath, imageName);
+				thisApp.getFileSize(folderPath, imageName);
 			} else {
 				console.log(err);
 			}
@@ -106,8 +117,9 @@ module.exports = {
 			fs.mkdirSync(mapTileSavePath);
 		}
 	},
-	addFileSize : function (folderPath, imageName) {
+	getFileSize : function (folderPath, imageName) {
 		let path = folderPath + '/' + imageName;
+		const thisApp = this;
 		checkSize(path, (err, size) => {
 			createFileLength++;
 			console.log('check => ' + createFileLength);
@@ -125,7 +137,7 @@ module.exports = {
 				console.log(fileSize + 'KB');
 			}
 			if(totalFileLength == createFileLength) {
-				totalSize = totalSize.toFixed(2);
+				totalSize = totalSize.toFixed(2); 
 				let averageSize = (totalSize / totalFileLength).toFixed(2),
 					convertTotalSize = (totalSize / 1024).toFixed(2);
 				console.log('===================== result ==================');
@@ -138,17 +150,20 @@ module.exports = {
 				let result = 'max File size => ' + maxSize + 'KB \n' +
 				'min File size => ' + minSize + 'KB \n' +
 				'total Tile size => ' + convertTotalSize + 'MB \n'+
-				'average tile Size => ' + averageSize + 'KB';				
+				'average tile Size => ' + averageSize + 'KB';			
 
-				let buffer = new Buffer(result);
-				fs.writeFile(folderPath + '/' + 'result.txt', buffer, (err) =>{
-					if(err) {
-						console.log('result txt create err. check err.');
-						console.log(err);
-					} else {
-						console.log('create result text file');
-					}
-				});
+				thisApp.createTextFile(folderPath, result, 'result.txt');
+			}
+		});
+	},
+	createTextFile : function (filePath, text, name) {
+		let buffer = new Buffer(text);
+		fs.writeFile(filePath + '/' + name, buffer, (err) => {
+			if(err) {
+				console.log( name +' create err. check err.');
+				console.log(err);
+			} else {
+				console.log('create '+ name +' text file');
 			}
 		});
 	},
