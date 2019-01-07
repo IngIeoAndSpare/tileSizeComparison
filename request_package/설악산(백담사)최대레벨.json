@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "234d17b0-d736-4fa0-9203-250d3a30b596",
+		"name": "설악산(백담사) 최대래벨",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[최대레벨] 다음",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://map0.daumcdn.net/map_skyview/L1/9048/5472.jpg?v=160114",
+					"protocol": "http",
+					"host": [
+						"map0",
+						"daumcdn",
+						"net"
+					],
+					"path": [
+						"map_skyview",
+						"L1",
+						"9048",
+						"5472.jpg"
+					],
+					"query": [
+						{
+							"key": "v",
+							"value": "160114"
+						}
+					]
+				},
+				"description": "http://map0.daumcdn.net/map_skyview/L1/9048/5472.jpg?v=160114"
+			},
+			"response": []
+		},
+		{
+			"name": "[최대레벨] 브이월드",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://xdworld.vworld.kr:8080/XDServer/3DData?Version=2.0.0.0&Request=GetLayer&Layer=tile_mo_HD&Level=15&IDX=280692&IDY=116668&Key={{API_KEY}}",
+					"protocol": "http",
+					"host": [
+						"xdworld",
+						"vworld",
+						"kr"
+					],
+					"port": "8080",
+					"path": [
+						"XDServer",
+						"3DData"
+					],
+					"query": [
+						{
+							"key": "Version",
+							"value": "2.0.0.0"
+						},
+						{
+							"key": "Request",
+							"value": "GetLayer"
+						},
+						{
+							"key": "Layer",
+							"value": "tile_mo_HD"
+						},
+						{
+							"key": "Level",
+							"value": "15"
+						},
+						{
+							"key": "IDX",
+							"value": "280692"
+						},
+						{
+							"key": "IDY",
+							"value": "116668"
+						},
+						{
+							"key": "Key",
+							"value": "{{API_KEY}}"
+						}
+					]
+				},
+				"description": "http://xdworld.vworld.kr:8080/XDServer/3DData?Version=2.0.0.0&Request=GetLayer&Layer=tile_mo_HD&Level=15&IDX=280692&IDY=116668&Key={{API_KEY}}"
+			},
+			"response": []
+		},
+		{
+			"name": "[최대레벨] 네이버",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://simg.pstatic.net/onetile/get/197/0/1/14/15412/12900/bl_st_bg",
+					"protocol": "https",
+					"host": [
+						"simg",
+						"pstatic",
+						"net"
+					],
+					"path": [
+						"onetile",
+						"get",
+						"197",
+						"0",
+						"1",
+						"14",
+						"15412",
+						"12900",
+						"bl_st_bg"
+					]
+				},
+				"description": "https://simg.pstatic.net/onetile/get/197/0/1/14/15412/12900/bl_st_bg"
+			},
+			"response": []
+		},
+		{
+			"name": "[최대레벨] 구글",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://khms0.google.co.kr/kh/v=821?x=112272&y=50480&z=17",
+					"protocol": "https",
+					"host": [
+						"khms0",
+						"google",
+						"co",
+						"kr"
+					],
+					"path": [
+						"kh",
+						"v=821"
+					],
+					"query": [
+						{
+							"key": "x",
+							"value": "112272"
+						},
+						{
+							"key": "y",
+							"value": "50480"
+						},
+						{
+							"key": "z",
+							"value": "17"
+						}
+					]
+				},
+				"description": "https://khms0.google.co.kr/kh/v=821?x=112272&y=50480&z=17"
+			},
+			"response": []
+		}
+	]
+}
