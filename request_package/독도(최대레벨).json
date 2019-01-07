@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "0d57113d-2395-4c54-911b-d34374cff98c",
+		"name": "독도(최대레벨)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[최대레벨] 네이버",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://simg.pstatic.net/onetile/get/197/0/1/14/20232/11482/bl_st_bg",
+					"protocol": "https",
+					"host": [
+						"simg",
+						"pstatic",
+						"net"
+					],
+					"path": [
+						"onetile",
+						"get",
+						"197",
+						"0",
+						"1",
+						"14",
+						"20232",
+						"11482",
+						"bl_st_bg"
+					]
+				},
+				"description": "https://simg.pstatic.net/onetile/get/197/0/1/14/20232/11482/bl_st_bg"
+			},
+			"response": []
+		},
+		{
+			"name": "[최대레벨] 다음",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://map0.daumcdn.net/map_skyview/L2/3809/5166.jpg?v=160114",
+					"protocol": "http",
+					"host": [
+						"map0",
+						"daumcdn",
+						"net"
+					],
+					"path": [
+						"map_skyview",
+						"L2",
+						"3809",
+						"5166.jpg"
+					],
+					"query": [
+						{
+							"key": "v",
+							"value": "160114"
+						}
+					]
+				},
+				"description": "http://map0.daumcdn.net/map_skyview/L2/3809/5166.jpg?v=160114"
+			},
+			"response": []
+		},
+		{
+			"name": "[최대레벨] 브이월드",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://xdworld.vworld.kr:8080/XDServer/3DData?Version=2.0.0.0&Request=GetLayer&Layer=tile_mo_HD&Level=15&IDX=283864&IDY=115820&Key={{API_KEY}}",
+					"protocol": "http",
+					"host": [
+						"xdworld",
+						"vworld",
+						"kr"
+					],
+					"port": "8080",
+					"path": [
+						"XDServer",
+						"3DData"
+					],
+					"query": [
+						{
+							"key": "Version",
+							"value": "2.0.0.0"
+						},
+						{
+							"key": "Request",
+							"value": "GetLayer"
+						},
+						{
+							"key": "Layer",
+							"value": "tile_mo_HD"
+						},
+						{
+							"key": "Level",
+							"value": "15"
+						},
+						{
+							"key": "IDX",
+							"value": "283864"
+						},
+						{
+							"key": "IDY",
+							"value": "115820"
+						},
+						{
+							"key": "Key",
+							"value": "{{API_KEY}}"
+						}
+					]
+				},
+				"description": "http://xdworld.vworld.kr:8080/XDServer/3DData?Version=2.0.0.0&Request=GetLayer&Layer=tile_mo_HD&Level=15&IDX=283864&IDY=115820&Key={{API_KEY}}"
+			},
+			"response": []
+		}
+	]
+}
