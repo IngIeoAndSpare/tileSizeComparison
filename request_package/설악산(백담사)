@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "0b35fee9-6964-4313-addb-31d397eebef6",
+		"name": "설악산(백담사)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[백담사] 네이버",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://simg.pstatic.net/onetile/get/197/0/1/12/3853/3225/bl_st_bg",
+					"protocol": "https",
+					"host": [
+						"simg",
+						"pstatic",
+						"net"
+					],
+					"path": [
+						"onetile",
+						"get",
+						"197",
+						"0",
+						"1",
+						"12",
+						"3853",
+						"3225",
+						"bl_st_bg"
+					]
+				},
+				"description": "https://simg.pstatic.net/onetile/get/197/0/1/12/3853/3225/bl_st_bg"
+			},
+			"response": []
+		},
+		{
+			"name": "[백담사] 다음",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://map0.daumcdn.net/map_skyview/L3/2262/1368.jpg?v=160114",
+					"protocol": "http",
+					"host": [
+						"map0",
+						"daumcdn",
+						"net"
+					],
+					"path": [
+						"map_skyview",
+						"L3",
+						"2262",
+						"1368.jpg"
+					],
+					"query": [
+						{
+							"key": "v",
+							"value": "160114"
+						}
+					]
+				},
+				"description": "http://map0.daumcdn.net/map_skyview/L3/2262/1368.jpg?v=160114"
+			},
+			"response": []
+		},
+		{
+			"name": "[백담사] 구글",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://khms0.google.co.kr/kh/v=821?x=28068&y=12620&z=15",
+					"protocol": "https",
+					"host": [
+						"khms0",
+						"google",
+						"co",
+						"kr"
+					],
+					"path": [
+						"kh",
+						"v=821"
+					],
+					"query": [
+						{
+							"key": "x",
+							"value": "28068"
+						},
+						{
+							"key": "y",
+							"value": "12620"
+						},
+						{
+							"key": "z",
+							"value": "15"
+						}
+					]
+				},
+				"description": "https://khms0.google.co.kr/kh/v=821?x=28068&y=12620&z=15"
+			},
+			"response": []
+		},
+		{
+			"name": "[백담사] 브이월드",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://xdworld.vworld.kr:8080/XDServer/requestLayerNode?Layer=2018&Level=11&IDX=17543&IDY=7291&APIKey={{API_KEY}}",
+					"protocol": "http",
+					"host": [
+						"xdworld",
+						"vworld",
+						"kr"
+					],
+					"port": "8080",
+					"path": [
+						"XDServer",
+						"requestLayerNode"
+					],
+					"query": [
+						{
+							"key": "Layer",
+							"value": "2018"
+						},
+						{
+							"key": "Level",
+							"value": "11"
+						},
+						{
+							"key": "IDX",
+							"value": "17543"
+						},
+						{
+							"key": "IDY",
+							"value": "7291"
+						},
+						{
+							"key": "APIKey",
+							"value": "{{API_KEY}}"
+						}
+					]
+				},
+				"description": "http://xdworld.vworld.kr:8080/XDServer/requestLayerNode?Layer=2018&Level=11&IDX=17543&IDY=7291&APIKey={{API_KEY}}"
+			},
+			"response": []
+		},
+		{
+			"name": "[백담사] 브이월즈2018",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://xdworld.vworld.kr:8080/XDServer/requestLayerNode?Layer=2018&Level=11&IDX=17543&IDY=7291&APIKey={{API_KEY}}",
+					"protocol": "http",
+					"host": [
+						"xdworld",
+						"vworld",
+						"kr"
+					],
+					"port": "8080",
+					"path": [
+						"XDServer",
+						"requestLayerNode"
+					],
+					"query": [
+						{
+							"key": "Layer",
+							"value": "2018"
+						},
+						{
+							"key": "Level",
+							"value": "11"
+						},
+						{
+							"key": "IDX",
+							"value": "17543"
+						},
+						{
+							"key": "IDY",
+							"value": "7291"
+						},
+						{
+							"key": "APIKey",
+							"value": "{{API_KEY}}"
+						}
+					]
+				},
+				"description": "http://xdworld.vworld.kr:8080/XDServer/requestLayerNode?Layer=2018&Level=11&IDX=17543&IDY=7291&APIKey={{API_KEY}}"
+			},
+			"response": []
+		}
+	]
+}
