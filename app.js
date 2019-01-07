@@ -38,6 +38,7 @@ var vworldUrlContext = 'http://xdworld.vworld.kr:8080/XDServer/3DData?Version=2.
 var maxSize = 0,
 	minSize = 1000,
 	totalSize = 0,
+	imageCount = 0,
 	createFileLength = 0,
 	totalFileLength = 0;
 
@@ -87,8 +88,7 @@ module.exports = {
 			let imageResult = new Buffer(response.data, 'binary').toString('base64');
 			thisApp.saveTile(imageResult, tileInfo);
         }).catch(err => {
-			requestFailList += 'fail d' 
-
+			requestFailList += 'fail request tile => x: ' + tileInfo.coordinateSet.x + '  y: ' + tileInfo.coordinateSet.y + '  zoom: ' + tileInfo.zoomLevel + '\n';
 			console.log('get tile data err =>  x: ' + tileInfo.coordinateSet.x + '  y: ' + tileInfo.coordinateSet.y + '  zoom: ' + tileInfo.zoomLevel);
 			console.log(err);
 			createFileLength++;
@@ -122,37 +122,48 @@ module.exports = {
 		const thisApp = this;
 		checkSize(path, (err, size) => {
 			createFileLength++;
+			let checkImageFlag = true;
 			console.log('check => ' + createFileLength);
 			if(err) {
 				console.log(path + 'file read size err. check file');
 				console.log(err);
 			} else {
 				let fileSize = (size/1024).toFixed(2);
-				if(fileSize > maxSize) {
+				if(fileSize < 0.2) {
+					// not error code but file is not jpg
+					requestFailList += imageName + ' not image. please check. \n';
+					checkImageFlag = false;
+				} else if(fileSize > maxSize) {
 					maxSize = fileSize;
 				} else if (fileSize < minSize) {
 					minSize = fileSize;
 				}
-				totalSize += Number(fileSize);
-				console.log(fileSize + 'KB');
+				if(checkImageFlag) {
+					imageCount++;
+					totalSize += Number(fileSize);
+					console.log(fileSize + 'KB');
+				}
 			}
 			if(totalFileLength == createFileLength) {
 				totalSize = totalSize.toFixed(2); 
-				let averageSize = (totalSize / totalFileLength).toFixed(2),
+				let averageSize = (totalSize / imageCount).toFixed(2),
 					convertTotalSize = (totalSize / 1024).toFixed(2);
 				console.log('===================== result ==================');
+				console.log('create imageFile => ' + imageCount);
 				console.log('max File size => ' + maxSize + 'KB');
 				console.log('min File size => ' + minSize + 'KB');
 				console.log('total Tile size => ' + convertTotalSize + 'MB');
 				console.log('average tile Size => ' + averageSize + 'KB');
 
 				// create result txt file
-				let result = 'max File size => ' + maxSize + 'KB \n' +
+				let result = 'create Image file => ' + imageCount + '\n'  +
+				'max File size => ' + maxSize + 'KB \n' +
 				'min File size => ' + minSize + 'KB \n' +
 				'total Tile size => ' + convertTotalSize + 'MB \n'+
 				'average tile Size => ' + averageSize + 'KB';			
-
 				thisApp.createTextFile(folderPath, result, 'result.txt');
+				// create fail list txt file
+				thisApp.createTextFile(folderPath, requestFailList, 'failList.txt');
 			}
 		});
 	},
