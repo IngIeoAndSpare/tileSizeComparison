@@ -9,7 +9,7 @@ var userInputData = []; // 0. vender 1. coordinateX, 2. coordinateY, 3. zoomLeve
 
 // menu text 
 const menuText = [
-    '지도 종류를 선택해 주세요. (1. vworld, 2. naver, 3. duam, 4. google, 5. vwolrd(2018ver)) => ',
+    '지도 종류를 선택해 주세요. (1. vworld, 2. naver, 3. duam, 4. google, 5. vwolrd(2018ver), 6. vworld(DDSver)) => ',
     'x 좌표를 입력해 주세요. => ',
     'y 좌표를 입력해 주세요. => ',
     'zoom level을 입력해 주세요. => ',
@@ -19,14 +19,15 @@ const menuText = [
 	'요청할 세로축 타일 갯수를 입력해 주세요. => '
 ]
 const mapVender = [
-	'vworld', 'naver', 'daum', 'google', 'vworld2018'
+	'vworld', 'naver', 'daum', 'google', 'vworld2018', 'vworldDDS'
 ]
 // url context
 var vworldUrlContext = 'http://xdworld.vworld.kr:8080/XDServer/3DData?Version=2.0.0.0&Request=GetLayer&Layer=tile_mo_HD', //Level=12&IDX=34939&IDY=14471&Key=...',
     naverUrlContext = 'https://simg.pstatic.net/onetile/get', //  197/0/1/11/1750/1223/bl_st_bg (x/y)
     daumUrlContext = 'http://map0.daumcdn.net/map_skyview', //  L6/187/130.jpg?v=160114',
 	googleUrlContext = 'https://khms0.google.co.kr/kh',  //v=821?x=3499&y=1602&z=12',
-	vwolrdUrlContext2018 = 'http://xdworld.vworld.kr:8080/XDServer/requestLayerNode?Layer=2018'; //Level=12&IDX=34939&IDY=14471&APIKey=...';
+	vwolrdUrlContext2018 = 'http://xdworld.vworld.kr:8080/XDServer/requestLayerNode?Layer=2018',
+	vworldUrlContextDds = 'http://xdworld.vworld.kr:8080/XDServer/requestLayerNode?Layer=tile'; //&Level=1&IDX=15&IDY=6&APIKey=...
 
 // fileSize value
 var maxSize = 0,
@@ -90,6 +91,7 @@ module.exports = {
     },
     saveTile : function (data, tileInfo) {
 		const thisApp = this;
+		//XXX: 확장자는 임시로 .jpg 로 저장.
 		let imageName = tileInfo.coordinateSet.x + '_' + tileInfo.coordinateSet.y + '_' + tileInfo.zoomLevel + '.jpg',
 			folderPath = './' + tileInfo.vender;
 		//create tile image file
@@ -129,10 +131,13 @@ module.exports = {
 					// not error code but file is not jpg
 					requestFailList += imageName + ' not image. please check. \n';
 					checkImageFlag = false;
-				} else if(fileSize > maxSize) {
-					maxSize = fileSize;
-				} else if (fileSize < minSize) {
-					minSize = fileSize;
+				} else {
+					if (fileSize > maxSize) {
+						maxSize = fileSize;
+					} 
+					if (fileSize < minSize) {
+						minSize = fileSize;
+					}
 				}
 				if(checkImageFlag) {
 					imageCount++;
@@ -163,9 +168,6 @@ module.exports = {
 			}
 		});
 	},
-	closeFs: function () {
-		fs.close();
-	},
 	createTextFile : function (filePath, text, name) {
 		let buffer = new Buffer(text);
 		fs.writeFile(filePath + '/' + name, buffer, (err) => {
@@ -176,7 +178,6 @@ module.exports = {
 				console.log('create '+ name +' text file');
 			}
 		});
-		this.closeFs();
 	},
     getUserInput : function () {
 		for(let consoleLine of menuText) {
@@ -199,7 +200,10 @@ module.exports = {
 				url = googleUrlContext + '/v=821?x=' + x + '&y=' + y + '&z=' + Number(userInputData[3]);
 				break;
 			case 5 :
-				url = vwolrdUrlContext2018 + '&Level=' + Number(userInputData[3]) + '&IDX=' + x + '&IDY=' + y + '&APIKey=' + userInputData[5] ;;
+				url = vwolrdUrlContext2018 + '&Level=' + Number(userInputData[3]) + '&IDX=' + x + '&IDY=' + y + '&APIKey=' + userInputData[5];
+				break;
+			case 6 :
+				url = vworldUrlContextDds + '&Level=' + Number(userInputData[3]) + '&IDX=' + x + '&IDY=' + y + '&APIKey=' + userInputData[5];
 				break;
 		}
 		return url;
