@@ -4,7 +4,7 @@
   "description": "각 지도별 타일 비교",
   "main": "app.js",
   "dependencies": {
-    "axios": "0.18.1",
+    "axios": "0.21.1",
     "fs": "^0.0.1-security",
     "get-folder-size": "^2.0.1",
     "readline-sync": "^1.4.9"
